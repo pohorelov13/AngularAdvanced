@@ -8,4 +8,5 @@ export interface Recipe {
   instructions: string[],
   tags: string[],
   difficulty: string
+  image: string;
 }

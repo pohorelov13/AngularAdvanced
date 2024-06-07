@@ -10,7 +10,11 @@ export class RecipesService {
 
   constructor(private client: HttpClient) { }
 
-  public getRecipes(tag: string): Observable<Recipes> {
+  public getRecipesByTag(tag: string): Observable<Recipes> {
     return this.client.get<Recipes>(`https://dummyjson.com/recipes/tag/${tag}`);
+  }
+
+  public getRecipesById(id: number): Observable<Recipe> {
+    return this.client.get<Recipe>(`https://dummyjson.com/recipes/${id}`);
   }
 }

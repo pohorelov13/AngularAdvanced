@@ -20,6 +20,7 @@ import {MatInput} from "@angular/material/input";
 import {MatButton} from "@angular/material/button";
 import {FormsModule} from "@angular/forms";
 import {map, Subscription} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-lesson1',
@@ -52,7 +53,8 @@ export class Lesson1Component implements OnDestroy {
   value: string = '';
   private sub1: Subscription | undefined
 
-  constructor(private service: RecipesService) {
+  constructor(private service: RecipesService,
+              private router: Router) {
   }
 
   ngOnDestroy(): void {
@@ -63,7 +65,7 @@ export class Lesson1Component implements OnDestroy {
 
 
   public getRecipeByTag() {
-    this.sub1 = this.service.getRecipes(this.value)
+    this.sub1 = this.service.getRecipesByTag(this.value)
       .pipe(map(rs => rs.recipes))
       .subscribe({
         next: (v) => {
@@ -72,5 +74,9 @@ export class Lesson1Component implements OnDestroy {
         },
         error: (e) => console.log(e)
       })
+  }
+
+  public navigate(path: string) {
+    this.router.navigate([`/${path}`]);
   }
 }
