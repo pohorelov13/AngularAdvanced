@@ -1,12 +1,11 @@
 import { Routes } from '@angular/router';
-import {SecondComponent} from "./second/second.component";
-import {ThirdComponent} from "./third/third.component";
-import {NotFoundComponent} from "./not-found/not-found.component";
-import {Lesson1Component} from "./lesson1/lesson1.component";
-import {exitGuard} from "./exit.guard";
+import {NoteListComponent} from "./node-list/note-list.component";
+import {NoteDetailComponent} from "./note-detail/note-detail.component";
+import {NoteEditComponent} from "./note-edit/note-edit.component";
 
 export const routes: Routes = [
-  {path:'', component: Lesson1Component, canDeactivate: [exitGuard]},
-  {path:'second/:number', component: SecondComponent},
-  {path:'third', component: ThirdComponent},
-  {path: '**', component: NotFoundComponent}];
+  { path: '', component: NoteListComponent },
+  { path: 'note/:id', component: NoteDetailComponent },
+  { path: 'edit/:id', component: NoteEditComponent },
+  { path: 'new', component: NoteEditComponent }
+];

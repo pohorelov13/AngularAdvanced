@@ -1,19 +1,31 @@
-import { Component } from '@angular/core';
-import {RouterLink, RouterOutlet} from '@angular/router';
-import {Lesson1Component} from "./lesson1/lesson1.component";
+import {Component} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {RouterOutlet} from '@angular/router';
+import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {Note} from "./note";
+import {MatToolbar} from "@angular/material/toolbar";
+import {MatFormField} from "@angular/material/form-field";
+import {FormsModule} from "@angular/forms";
+import {MatInput} from "@angular/material/input";
+import {MatListItem, MatNavList} from "@angular/material/list";
+import {MatIcon} from "@angular/material/icon";
+import {MatLine} from "@angular/material/core";
 import {MatButton} from "@angular/material/button";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, Lesson1Component, MatButton, RouterLink],
+  imports: [CommonModule, RouterOutlet, HttpClientModule, MatToolbar, MatFormField, FormsModule, MatInput, MatNavList, MatListItem, MatIcon, MatLine, MatButton],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.scss'
 })
-export class AppComponent {
-  title = 'Course';
+export class AppComponent  {
+  title = 'frontend';
+  message = '';
+  filteredNotes:Note[] = []
 
-  getRandom() {
-    return Math.floor(Math.random() * 50) + 1;
+  constructor(private readonly http: HttpClient) {
   }
+
+
 }
